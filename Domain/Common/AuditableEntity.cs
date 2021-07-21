@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Domain.Common
 {
-    public abstract class AuditableEntity : IValidableEntity
+    public abstract class AuditableEntity : TypedEntity, IValidableEntity
     {
         public AuditableEntity()
         {
