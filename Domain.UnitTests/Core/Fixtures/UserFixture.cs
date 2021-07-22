@@ -31,7 +31,7 @@ namespace Domain.UnitTests.Core.Fixtures
                             string name = f.Name.FirstName(genero);
 
                             return new User(name: name,
-                                            document: "44435301857",
+                                            document: "92426261803",
                                             email: f.Internet.Email(name),
                                             password: password);
                         });
@@ -47,7 +47,7 @@ namespace Domain.UnitTests.Core.Fixtures
                             return new User(name: "",
                                             document: "",
                                             email: "",
-                                            password:"");
+                                            password: "");
                         });
         }
 

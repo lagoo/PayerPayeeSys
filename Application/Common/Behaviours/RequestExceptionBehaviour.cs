@@ -30,13 +30,13 @@ namespace Application.Common.Behaviours
             catch (FluentValidation.ValidationException ex)
             {
                 throw ex;
-            }                        
+            }
             catch (WarningException ex)
-            {                
+            {
                 throw ex;
             }
             catch (Exception ex)
-            {                
+            {
                 throw ex;
             }
         }

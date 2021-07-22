@@ -7,6 +7,6 @@ namespace Application.Common.Services
     {
         public int UserId => SystemConst.SYSTEM_USER_ID;
 
-        public string UserName => SystemConst.SYSTEM_USER_NAME;        
+        public string UserName => SystemConst.SYSTEM_USER_NAME;
     }
 }

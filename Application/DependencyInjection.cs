@@ -1,33 +1,29 @@
 ﻿using Application.Common.Behaviours;
 using Application.Common.Interfaces;
 using Application.Common.Services;
-using AutoMapper.Configuration;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace Application
 {
     public static class DependencyInjection
     {
         public static IServiceCollection AddApplication(this IServiceCollection services, bool defaultServices = false)
-        {            
+        {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestExceptionBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
-            
+
 
             if (defaultServices)
-                services.AddDefaultServices();            
+                services.AddDefaultServices();
 
             return services;
         }
-        
+
 
         private static IServiceCollection AddDefaultServices(this IServiceCollection services)
         {
@@ -35,6 +31,6 @@ namespace Application
             services.AddScoped<IApplicationVersionService, DefaultApplicationVersionService>();
 
             return services;
-        }        
+        }
     }
 }

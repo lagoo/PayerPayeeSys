@@ -8,7 +8,7 @@ namespace Application.Common.Handlers
         protected readonly IApplicationContext _context;
         protected readonly IMapper _mapper;
 
-        public QueryBaseHandler(IApplicationContext  context, IMapper mapper)
+        public QueryBaseHandler(IApplicationContext context, IMapper mapper)
         {
             this._context = context;
             this._mapper = mapper;

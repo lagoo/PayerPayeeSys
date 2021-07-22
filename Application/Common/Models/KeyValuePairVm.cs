@@ -18,7 +18,7 @@ namespace Application.Common.Models
         public KeyValuePairVm HierarchicalEntity { get; set; }
 
         public void Mapping(Profile profile)
-        {            
+        {
         }
     }
 }

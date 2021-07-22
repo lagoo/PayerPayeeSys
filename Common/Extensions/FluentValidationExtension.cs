@@ -14,7 +14,7 @@ namespace Common.Extensions
             return validationResult.Errors.GroupBy(e => e.PropertyName)
                                           .ToDictionary(e => e.Key, e => e.Select(a => a.ErrorMessage).ToArray());
         }
-        
+
         public static IRuleBuilderOptions<T, string> ValidDocument<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             return ruleBuilder.Must(input =>
@@ -30,7 +30,7 @@ namespace Common.Extensions
                 {
 
                     return false;
-                }                    
+                }
             });
         }
     }

@@ -35,7 +35,7 @@ namespace Application.Common.Exceptions
 
                 Failures.Add(propertyName, propertyFailures);
             }
-        }        
+        }
 
         public IDictionary<string, string[]> Failures { get; }
     }

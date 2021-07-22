@@ -1,6 +1,4 @@
 ﻿using Domain.Common;
-using Domain.Interfaces;
-using System;
 
 namespace Domain.UnitTests.Core.Models
 {
@@ -18,6 +16,6 @@ namespace Domain.UnitTests.Core.Models
 
         public override int EntityId => Id;
         public override string EntityUniqueIdentifier => Identifier;
-        public override string Type => "Classe de Teste";       
+        public override string Type => "Classe de Teste";
     }
 }

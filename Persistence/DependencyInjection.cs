@@ -2,9 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Persistence
 {
@@ -17,8 +14,8 @@ namespace Persistence
 
             services.AddScoped<IApplicationContext>(provider => provider.GetService<ApplicationContext>());
             services.AddDbContext<ApplicationContext>();
-            
+
             return services;
-        }        
+        }
     }
 }

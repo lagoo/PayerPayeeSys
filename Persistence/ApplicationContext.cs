@@ -5,6 +5,7 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,6 +16,11 @@ namespace Persistence
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
         private readonly IDomainEventService _domainEventService;
+
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+            : base(options)
+        {
+        }
 
         public ApplicationContext(
             DbContextOptions<ApplicationContext> options,
@@ -31,8 +37,11 @@ namespace Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
+            foreach (var property in modelBuilder.Model.GetEntityTypes().SelectMany(
+                e => e.GetProperties().Where(p => p.ClrType == typeof(string))))
+                property.SetColumnType("varchar(300)");
 
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

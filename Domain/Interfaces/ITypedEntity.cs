@@ -4,6 +4,6 @@
     {
         int EntityId { get; }
         string EntityUniqueIdentifier { get; }
-        string Type { get; }        
+        string Type { get; }
     }
 }
