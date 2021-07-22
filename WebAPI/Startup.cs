@@ -8,6 +8,8 @@ using Application;
 using Infrastructure;
 using Persistence;
 using WebAPI.Common;
+using FluentValidation.AspNetCore;
+using Application.Common.Interfaces;
 
 namespace WebAPI
 {
@@ -32,10 +34,17 @@ namespace WebAPI
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IApplicationContext>())
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    options.SuppressMapClientErrors = true;
+                });
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PayerPayeeSys", Version = "v1" });
             });
         }
 
@@ -46,7 +55,7 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PayerPayeeSys v1"));
             }
 
             app.UseCustomExceptionHandler();

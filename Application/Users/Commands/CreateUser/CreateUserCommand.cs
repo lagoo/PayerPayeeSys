@@ -14,21 +14,10 @@ namespace Application.Users.Commands.CreateUser
 {
     public class CreateUserCommand : IRequest<int>
     {
-        public CreateUserCommand(string name,
-                                 string document,
-                                 string email,
-                                 string password)
-        {
-            Name = name;
-            Document = document;
-            Email = email;
-            Password = password;
-        }
-
-        public string Name { get; }
-        public string Document { get; }
-        public string Email { get; }
-        public string Password { get; }
+        public string Name { get; set; }
+        public string Document { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
 
         public class Handler : CommandBaseHandler, IRequestHandler<CreateUserCommand, int>
         {
@@ -59,8 +48,6 @@ namespace Application.Users.Commands.CreateUser
             }
         }
     }
-
-
 
     public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {

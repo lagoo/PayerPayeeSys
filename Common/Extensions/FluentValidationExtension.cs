@@ -28,7 +28,6 @@ namespace Common.Extensions
                 }
                 catch (Exception)
                 {
-
                     return false;
                 }
             });
