@@ -19,7 +19,7 @@ namespace Domain.UnitTests.Entities
         public void IsValid_ValidValues_ShouldNotFillValidationResultAndReturnTrue()
         {
             // Arrange
-            var entity = _userFixture.GenerateValidEntity();
+            var entity = _userFixture.GenerateValidEntity("123");
 
             // Act
             bool result = entity.IsValid();
@@ -27,6 +27,7 @@ namespace Domain.UnitTests.Entities
             // Assert
             result.Should().BeTrue();
             entity.ValidationErros.Should().BeEmpty();
+            entity.Password.Should().NotBe("123");
         }
 
         [Fact(DisplayName = "Deve preencher propriedade ValidationErros e retornar false")]

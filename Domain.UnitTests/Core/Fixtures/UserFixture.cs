@@ -21,7 +21,7 @@ namespace Domain.UnitTests.Core.Fixtures
             ValidationErrosExpected = FluentValidationHelper.GetFluentValidationRules(new UserValidator());
         }
 
-        public User GenerateValidEntity()
+        public User GenerateValidEntity(string password)
         {
             Name.Gender genero = new Faker().PickRandom<Name.Gender>();
 
@@ -33,7 +33,7 @@ namespace Domain.UnitTests.Core.Fixtures
                             return new User(name: name,
                                             document: "44435301857",
                                             email: f.Internet.Email(name),
-                                            password:"123");
+                                            password: password);
                         });
         }
 
