@@ -1,4 +1,5 @@
-﻿using Application.UnitTests.Core;
+﻿using Application.Common.Exceptions;
+using Application.UnitTests.Core;
 using Application.Users.Commands.CreateUser;
 using FluentAssertions;
 using System;
@@ -24,13 +25,13 @@ namespace Application.UnitTests.Users.Commands.CreateUser
         }
 
         [Fact]
-        public async Task Handle_GivenInValidRequest_ShouldThrowValidationException()
+        public async Task Handle_GivenInvalidRequest_ShouldThrowValidationException()
         {
             // Arrange            
             var sut = new CreateUserCommand.Handler(_context, _currentUserMock.Object);
 
             // Act - dados ja inseridos no banco & Assert            
-            await Assert.ThrowsAnyAsync<Exception>(() => sut.Handle(new CreateUserCommand("Iago", "92426261803", "iagogs@gmail.com", "123"), CancellationToken.None));
+            await Assert.ThrowsAnyAsync<ValidationException>(() => sut.Handle(new CreateUserCommand("Iago", "92426261803", "iagogs@gmail.com", "123"), CancellationToken.None));
         }
     }
 }

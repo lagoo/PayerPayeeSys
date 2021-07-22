@@ -1,10 +1,12 @@
 ﻿using Application.Common.Handlers;
 using Application.Common.Interfaces;
+using Application.Users.Extensions;
 using Common.Extensions;
 using Domain.Entities;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -37,6 +39,13 @@ namespace Application.Users.Commands.CreateUser
 
             public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
+                
+                if (await _context.HasUserEmail(request.Email))
+                    throw new Common.Exceptions.ValidationException("E-mail", new string[] { $"Já existe um usuário com esse E-Mail {request.Email}" });
+
+                if (await _context.HasUserDocument(request.Document))
+                    throw new Common.Exceptions.ValidationException("CPF/CNPJ", new string[] { $"Já existe um usuário com esse CPF/CNPJ {request.Document}" });
+
                 User entity = new User(request.Name,
                                        request.Document,
                                        request.Email,
@@ -55,36 +64,19 @@ namespace Application.Users.Commands.CreateUser
 
     public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {
-        private readonly IApplicationContext _context;
-
-        public CreateUserCommandValidator(IApplicationContext context)
+        public CreateUserCommandValidator()
         {
-            this._context = context;
-
             RuleFor(e => e.Name)
                .NotEmpty().WithMessage("Nome não pode ser vazio")
                .MinimumLength(4).WithMessage("Nome deve conter no mínimo 4 letras");
 
             RuleFor(e => e.Email)
                .NotEmpty().WithMessage("E-Mail não pode ser vazio")
-               .EmailAddress().WithMessage("E-Mail deve ser no formato correto")
-               .MustAsync(UniqueEmail).WithMessage(e => $"Já existe um usuário com esse E-Mail {e.Email}");
+               .EmailAddress().WithMessage("E-Mail deve ser no formato correto");
 
             RuleFor(e => e.Document)
                .NotEmpty().WithMessage("CPF/CNPJ não pode ser vazio")
-               .ValidDocument().WithMessage("CPF/CNPJ deve ser no formato correto")
-               .MustAsync(UniqueDocument).WithMessage(e => $"Já existe um usuário com esse CPF/CNPJ {e.Document}");
-
-        }
-
-        private async Task<bool> UniqueEmail(string email, CancellationToken arg2)
-        {
-            return !await _context.Users.AsNoTracking().AnyAsync(e => e.Email == email.ToLower());
-        }
-
-        private async Task<bool> UniqueDocument(string document, CancellationToken arg2)
-        {
-            return !await _context.Users.AsNoTracking().AnyAsync(e => e.Document == document.ToLower());
+               .ValidDocument().WithMessage("CPF/CNPJ deve ser no formato correto");
         }
     }
 }

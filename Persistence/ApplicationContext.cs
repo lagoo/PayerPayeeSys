@@ -16,12 +16,7 @@ namespace Persistence
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
         private readonly IDomainEventService _domainEventService;
-
-        public ApplicationContext(DbContextOptions<ApplicationContext> options)
-            : base(options)
-        {
-        }
-
+        
         public ApplicationContext(
             DbContextOptions<ApplicationContext> options,
             ICurrentUserService currentUserService,

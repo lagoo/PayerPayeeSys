@@ -1,5 +1,8 @@
-﻿using Domain.Entities;
+﻿using Application.Common.Interfaces;
+using Common.Interface;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 using Persistence;
 using System;
 
@@ -13,7 +16,10 @@ namespace Application.UnitTests.Core
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
-            var context = new ApplicationContext(options);
+            var context = new ApplicationContext(options,
+                new Mock<ICurrentUserService>().SetupService().Object,
+                new Mock<IDomainEventService>().Object,
+                new Mock<IDateTime>().Object);
 
             context.Database.EnsureCreated();
 

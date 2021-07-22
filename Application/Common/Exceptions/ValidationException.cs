@@ -13,6 +13,11 @@ namespace Application.Common.Exceptions
             Failures = new Dictionary<string, string[]>();
         }
 
+        public ValidationException(string key, string[] erros) : this()
+        {
+            Failures.Add(key, erros);
+        }
+
         public ValidationException(IReadOnlyDictionary<string, string[]> failures) : this()
         {
             foreach (var fail in failures)
