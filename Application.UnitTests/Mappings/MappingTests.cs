@@ -13,5 +13,11 @@ namespace Application.UnitTests.Mappings
             _configuration = fixture.ConfigurationProvider;
             _mapper = fixture.Mapper;
         }
+
+        [Fact()]        
+        public void ShouldHaveValidConfiguration()
+        {
+            _configuration.AssertConfigurationIsValid();
+        }
     }
 }

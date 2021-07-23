@@ -33,7 +33,8 @@ namespace Domain.UnitTests.Core.Fixtures
                             return new User(name: name,
                                             document: "92426261803",
                                             email: f.Internet.Email(name),
-                                            password: password);
+                                            password: password,
+                                            initialAmount: 100);
                         });
         }
 
@@ -47,7 +48,8 @@ namespace Domain.UnitTests.Core.Fixtures
                             return new User(name: "",
                                             document: "",
                                             email: "",
-                                            password: "");
+                                            password: "",
+                                            initialAmount: 0);
                         });
         }
 

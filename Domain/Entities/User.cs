@@ -12,12 +12,14 @@ namespace Domain.Entities
         {            
         }
 
-        public User(string name, string document, string email, string password)
+        public User(string name, string document, string email, string password, decimal initialAmount)
         {
             Name = name;
             Document = document;
             Email = email;
             Password = password.Hash();
+
+            Wallat = new Wallat(initialAmount);
         }
 
         public int Id { get; private set; }

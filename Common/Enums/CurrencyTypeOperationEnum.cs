@@ -2,7 +2,7 @@
 {
     public enum CurrencyTypeOperationEnum
     {        
-        input = 1,        
-        output = 2
+        input,        
+        output
     }
 }

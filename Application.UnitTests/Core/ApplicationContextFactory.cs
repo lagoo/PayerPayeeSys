@@ -8,8 +8,12 @@ using System;
 
 namespace Application.UnitTests.Core
 {
-    public class ApplicationContextFactory
+    public static class ApplicationContextFactory
     {
+        public static readonly User BaseUser = new("Iago", "92426261803", "iagogs@gmail.com", "123", 100);
+        public static readonly User[] Users = { BaseUser, new("Fernando", "94842021012", "fernando@gmail.com", "123", 100) };
+
+
         public static ApplicationContext Create()
         {
             var options = new DbContextOptionsBuilder<ApplicationContext>()
@@ -23,9 +27,7 @@ namespace Application.UnitTests.Core
 
             context.Database.EnsureCreated();
 
-            context.Users.AddRange(new[] {
-                new User("Iago", "92426261803","iagogs@gmail.com","123")
-            });
+            context.Users.AddRange(Users);
 
             context.SaveChanges();
 
