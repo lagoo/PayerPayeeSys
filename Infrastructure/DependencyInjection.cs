@@ -1,5 +1,5 @@
 ﻿using Application.Common.Interfaces;
-using Common.Interface;
+using Common.Interfaces;
 using Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -2,7 +2,6 @@
 using Application.UnitTests.Core;
 using Application.Users.Commands.CreateUser;
 using FluentAssertions;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -18,7 +17,13 @@ namespace Application.UnitTests.Users.Commands.CreateUser
             var sut = new CreateUserCommand.Handler(_context, _currentUserMock.Object);
 
             // Act
-            var result = await sut.Handle(new CreateUserCommand("Mariana", "75332667817", "mariana.nogueira@gmail.com", "123"), CancellationToken.None);
+            var result = await sut.Handle(new CreateUserCommand()
+            {
+                Name = "Mariana",
+                Document = "75332667817",
+                Email = "mariana.nogueira@gmail.com",
+                Password = "123"
+            }, CancellationToken.None);
 
             // Assert
             result.Should().BeGreaterThan(0);
@@ -31,7 +36,7 @@ namespace Application.UnitTests.Users.Commands.CreateUser
             var sut = new CreateUserCommand.Handler(_context, _currentUserMock.Object);
 
             // Act - dados ja inseridos no banco & Assert            
-            await Assert.ThrowsAnyAsync<ValidationException>(() => sut.Handle(new CreateUserCommand("Iago", "92426261803", "iagogs@gmail.com", "123"), CancellationToken.None));
+            await Assert.ThrowsAnyAsync<ValidationException>(() => sut.Handle(new CreateUserCommand() { Name= "Iago", Document = "92426261803", Email = "iagogs@gmail.com", Password = "123" }, CancellationToken.None));
         }
     }
 }

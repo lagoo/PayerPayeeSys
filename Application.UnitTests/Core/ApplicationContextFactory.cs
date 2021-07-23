@@ -1,5 +1,5 @@
 ﻿using Application.Common.Interfaces;
-using Common.Interface;
+using Common.Interfaces;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Moq;

@@ -1,6 +1,6 @@
 ﻿using Application.Common.Exceptions;
 using Application.Common.Interfaces;
-using Common.Interface;
+using Common.Interfaces;
 using MediatR;
 using System;
 using System.Threading;

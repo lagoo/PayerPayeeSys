@@ -14,9 +14,8 @@ namespace Domain.UnitTests.Entities
             _userFixture = userFixture;
         }
 
-        [Fact(DisplayName = "Não deve preencher propriedade ValidationErros e retornar true")]
-        [Trait("Domain", "User")]
-        public void IsValid_ValidValues_ShouldNotFillValidationResultAndReturnTrue()
+        [Fact]
+        public void IsValid_ValidParamns_ShouldNotFillValidationResultAndReturnTrue()
         {
             // Arrange
             var entity = _userFixture.GenerateValidEntity("123");
@@ -30,9 +29,8 @@ namespace Domain.UnitTests.Entities
             entity.Password.Should().NotBe("123");
         }
 
-        [Fact(DisplayName = "Deve preencher propriedade ValidationErros e retornar false")]
-        [Trait("Domain", "User")]
-        public void IsValid_InvalidValues_ShouldFillValidationResultAndReturnFalse()
+        [Fact]        
+        public void IsValid_InvalidParamns_ShouldFillValidationResultAndReturnFalse()
         {
             // Arrange
             var entity = _userFixture.GenerateInvalidEntity();

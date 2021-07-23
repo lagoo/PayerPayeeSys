@@ -1,5 +1,5 @@
 ﻿using Common.Constants;
-using Common.Interface;
+using Common.Interfaces;
 using Domain.UnitTests.Core.Models;
 using Moq;
 using Xunit;

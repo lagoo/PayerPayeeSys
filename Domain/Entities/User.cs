@@ -8,7 +8,9 @@ namespace Domain.Entities
 {
     public class User : AuditableEntity
     {
-        protected User() { }
+        protected User()
+        {            
+        }
 
         public User(string name, string document, string email, string password)
         {
@@ -24,6 +26,7 @@ namespace Domain.Entities
         public string Email { get; private set; }
         public string Password { get; private set; }
 
+        public Wallat Wallat { get; private set; }        
 
 
         public override int EntityId => Id;

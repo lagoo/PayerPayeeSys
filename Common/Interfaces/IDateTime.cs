@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Interface
+namespace Common.Interfaces
 {
     public interface IDateTime
     {

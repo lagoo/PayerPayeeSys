@@ -1,4 +1,4 @@
-﻿using Common.Interface;
+﻿using Common.Interfaces;
 using Domain.Interfaces;
 using System;
 using System.Collections.Generic;

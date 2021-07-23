@@ -35,12 +35,13 @@ namespace WebAPI
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddControllers()
-                .AddNewtonsoftJson()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IApplicationContext>())
-                .ConfigureApiBehaviorOptions(options =>
-                {
-                    options.SuppressMapClientErrors = true;
-                });
+                    .AddNewtonsoftJson()
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IApplicationContext>());
+
+                //.ConfigureApiBehaviorOptions(options =>
+                //{
+                //    options.SuppressMapClientErrors = true;
+                //});
 
             services.AddSwaggerGen(c =>
             {
