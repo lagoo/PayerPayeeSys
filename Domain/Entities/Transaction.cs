@@ -7,7 +7,7 @@ namespace Domain.Entities
     {
         protected Transaction(){ }
 
-        public Transaction(Wallat payer, Wallat payee, decimal amount)
+        public Transaction(Wallet payer, Wallet payee, decimal amount)
         {
             if (payer is null)            
                 throw new ArgumentNullException(nameof(payer));            
@@ -26,15 +26,15 @@ namespace Domain.Entities
 
 
         public int PayerId { get; private set; }
-        public WallatTransaction Payer { get; private set; }
+        public WalletTransaction Payer { get; private set; }
 
 
         public int PayeeId { get; private set; }
-        public WallatTransaction Payee { get; private set; }
+        public WalletTransaction Payee { get; private set; }
 
 
         public int EntityId => Id;
         public string EntityUniqueIdentifier => Identifier.ToString();
-        public string Type => "Trancação";        
+        public string Type => "Transação";        
     }
 }

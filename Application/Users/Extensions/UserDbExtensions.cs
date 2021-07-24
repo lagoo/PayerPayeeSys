@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Application.Users.Extensions
 {
-    public static class UserDbExtensions
+    public static class UserDBExtensions
     {
         public static async Task<bool> HasUserEmail(this IApplicationContext context, string email)
         {

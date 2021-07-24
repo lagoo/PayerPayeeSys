@@ -10,6 +10,6 @@ namespace Application.Users.Queries.GetUserDetail
         public string Document { get; set; }
         public string Email { get; set; }
 
-        public WallatLookupDto Wallat { get; set; }        
+        public WalletLookupDto Wallet { get; set; }        
     }
 }

@@ -4,14 +4,14 @@ using Domain.Entities;
 
 namespace Application.Users.Queries.GetUserDetail
 {
-    public class WallatTransactionLookupDto : IMapFrom<WallatTransaction>
+    public class WallatTransactionLookupDto : IMapFrom<WalletTransaction>
     {
         public decimal Amount { get; set; }
         public string OperationType { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<WallatTransaction, WallatTransactionLookupDto>()
+            profile.CreateMap<WalletTransaction, WallatTransactionLookupDto>()
                 .ForMember(d => d.OperationType, opt => opt.MapFrom(s => s.OperationType.ToString()));
         }
     }

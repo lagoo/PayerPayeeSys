@@ -24,8 +24,7 @@ namespace Application.Users.Commands.CreateUser
             }
 
             public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
-            {
-                
+            {                
                 if (await _context.HasUserEmail(request.Email))
                     throw new Common.Exceptions.ValidationException("E-mail", new string[] { $"Já existe um usuário com esse E-Mail {request.Email}" });
 

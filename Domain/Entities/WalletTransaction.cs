@@ -2,11 +2,11 @@
 
 namespace Domain.Entities
 {
-    public class WallatTransaction
+    public class WalletTransaction
     {
-        protected WallatTransaction(){}
+        protected WalletTransaction(){}
 
-        internal WallatTransaction(decimal amount)
+        internal WalletTransaction(decimal amount)
         {
             Amount = amount;
         }
@@ -14,8 +14,8 @@ namespace Domain.Entities
         public int Id { get; private set; }
         public decimal Amount { get; private set; }
 
-        public int WallatId { get; private set; }
-        public Wallat Wallat { get; private set; }
+        public int WalletId { get; private set; }
+        public Wallet Wallet { get; private set; }
 
         public CurrencyTypeOperationEnum OperationType => Amount > 0 ? CurrencyTypeOperationEnum.input : CurrencyTypeOperationEnum.output;
 

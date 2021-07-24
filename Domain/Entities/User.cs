@@ -19,7 +19,7 @@ namespace Domain.Entities
             Email = email;
             Password = password.Hash();
 
-            Wallat = new Wallat(initialAmount);
+            Wallet = new Wallet(initialAmount);
         }
 
         public int Id { get; private set; }
@@ -28,7 +28,8 @@ namespace Domain.Entities
         public string Email { get; private set; }
         public string Password { get; private set; }
 
-        public Wallat Wallat { get; private set; }        
+        public Wallet Wallet { get; private set; }        
+
 
 
         public override int EntityId => Id;

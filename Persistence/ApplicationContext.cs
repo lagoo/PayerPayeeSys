@@ -26,9 +26,6 @@ namespace Persistence
             _currentUserService = currentUserService;
             _domainEventService = domainEventService;
             _dateTime = dateTime;
-
-            //if (Database.GetPendingMigrations().Count() > 0)
-            //    Database.Migrate();
         }
 
         public DbSet<User> Users { get; set; }

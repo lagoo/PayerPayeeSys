@@ -7,14 +7,14 @@ using System.Linq;
 [assembly: InternalsVisibleTo("Domain.UnitTests")]
 namespace Domain.Entities
 {
-    public class Wallat : ITypedEntity
+    public class Wallet : ITypedEntity
     {
-        protected Wallat()
+        protected Wallet()
         {
-            _transactions = new List<WallatTransaction>();
+            _transactions = new List<WalletTransaction>();
         }
 
-        internal Wallat(decimal initialAmount) : this()
+        internal Wallet(decimal initialAmount) : this()
         {
             if (initialAmount > 0)
                 In(initialAmount);
@@ -28,24 +28,24 @@ namespace Domain.Entities
         public int UserId { get; private set; }
         public User User { get; private set; }
 
-        public WallatTransaction In(decimal amount)
+        public WalletTransaction In(decimal amount)
         {
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount), "amount can't be zero or negative number");
 
-            var wt = new WallatTransaction(amount);
+            var wt = new WalletTransaction(amount);
 
             _transactions.Add(wt);
 
             return wt;
         }
 
-        public WallatTransaction Out(decimal amount)
+        public WalletTransaction Out(decimal amount)
         {
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount), "amount can't be zero or negative number");
 
-            var wt = new WallatTransaction(amount * -1);
+            var wt = new WalletTransaction(amount * -1);
 
             _transactions.Add(wt);
 
@@ -55,8 +55,8 @@ namespace Domain.Entities
         public decimal GetBalance() => _transactions.Sum(e => e.Amount);
 
         
-        private readonly List<WallatTransaction> _transactions;
-        public IReadOnlyCollection<WallatTransaction> Transactions => _transactions;
+        private readonly List<WalletTransaction> _transactions;
+        public IReadOnlyCollection<WalletTransaction> Transactions => _transactions;
 
 
         public int EntityId => Id;

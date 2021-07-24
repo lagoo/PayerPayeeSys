@@ -4,19 +4,19 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistence.Configurations
 {
-    public class WallatConfiguration : IEntityTypeConfiguration<Wallat>
+    public class WalletConfiguration : IEntityTypeConfiguration<Wallet>
     {
-        public void Configure(EntityTypeBuilder<Wallat> builder)
+        public void Configure(EntityTypeBuilder<Wallet> builder)
         {
             builder
-               .ToTable("Wallats");
+               .ToTable("Wallets");
 
             builder
                 .HasKey(e => e.Id);
 
             builder
                 .HasOne(e => e.User)
-                .WithOne(e => e.Wallat)
+                .WithOne(e => e.Wallet)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

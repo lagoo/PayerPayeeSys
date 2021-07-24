@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistence.Configurations
 {
-    public class WallatTransactionConfiguration : IEntityTypeConfiguration<WallatTransaction>
+    public class WalletTransactionConfiguration : IEntityTypeConfiguration<WalletTransaction>
     {
-        public void Configure(EntityTypeBuilder<WallatTransaction> builder)
+        public void Configure(EntityTypeBuilder<WalletTransaction> builder)
         {
             builder
-               .ToTable("WallatTransactions");
+               .ToTable("WalletTransactions");
 
             builder
                 .HasKey(e => e.Id);
@@ -20,9 +20,9 @@ namespace Persistence.Configurations
                 .HasColumnType($"decimal(18,{SystemConst.DECIMAL_ROUND})");
 
             builder
-                .HasOne(e => e.Wallat)
+                .HasOne(e => e.Wallet)
                 .WithMany(e => e.Transactions)
-                .HasForeignKey(e => e.WallatId)
+                .HasForeignKey(e => e.WalletId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

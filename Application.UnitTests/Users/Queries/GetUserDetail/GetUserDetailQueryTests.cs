@@ -33,8 +33,8 @@ namespace Application.UnitTests.Users.Queries.GetUserDetail
             result.Name.Should().Be(ApplicationContextFactory.BaseUser.Name);
             result.Document.Should().Be(ApplicationContextFactory.BaseUser.Document);
             result.Email.Should().Be(ApplicationContextFactory.BaseUser.Email);
-            result.Wallat.Balance.Should().Be(100);
-            result.Wallat.Transactions.Should().HaveCount(1);
+            result.Wallet.Balance.Should().Be(100);
+            result.Wallet.Transactions.Should().HaveCount(1);
         }
     }
 }

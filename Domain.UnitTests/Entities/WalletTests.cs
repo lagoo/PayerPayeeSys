@@ -7,13 +7,13 @@ using Xunit;
 
 namespace Domain.UnitTests.Entities
 {
-    public class WallatTests
+    public class WalletTests
     {
         [Fact]
         public void Ctor_WithoutInitialAmount_ShouldNotFillTransactions()
         {
             // Arrange & Act
-            var stu = new Wallat(0);
+            var stu = new Wallet(0);
 
             // Assert
             stu.Transactions.Should().BeEmpty();            
@@ -23,7 +23,7 @@ namespace Domain.UnitTests.Entities
         public void Ctor_WithInitialAmount_ShouldFillTransactions()
         {
             // Arrange & Act
-            var stu = new Wallat(100);
+            var stu = new Wallet(100);
 
             // Assert
             stu.Transactions.Should().NotBeEmpty();
@@ -36,7 +36,7 @@ namespace Domain.UnitTests.Entities
         public void In_ValidParamns_ShouldFillTransactions()
         {
             // Arrange & Act
-            var stu = new Wallat(0);
+            var stu = new Wallet(0);
 
             var result = stu.In(100);
 
@@ -51,7 +51,7 @@ namespace Domain.UnitTests.Entities
         public void In_InvalidParamns_ShouldThrowExecption()
         {
             // Arrange 
-            var stu = new Wallat(-10);
+            var stu = new Wallet(-10);
 
             // Act & Assert                        
             Assert.Throws<ArgumentOutOfRangeException>(() => stu.In(-100));
@@ -62,7 +62,7 @@ namespace Domain.UnitTests.Entities
         public void Out_ValidParamns_ShouldFillTransactions()
         {
             // Arrange & Act
-            var stu = new Wallat(0);
+            var stu = new Wallet(0);
 
             var result = stu.Out(100);
 
@@ -77,7 +77,7 @@ namespace Domain.UnitTests.Entities
         public void Out_InvalidParamns_ShouldThrowExecption()
         {
             // Arrange 
-            var stu = new Wallat(0);
+            var stu = new Wallet(0);
 
             // Act & Assert                        
             Assert.Throws<ArgumentOutOfRangeException>(() => stu.Out(-100));
