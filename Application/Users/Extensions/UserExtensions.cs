@@ -1,8 +1,5 @@
 ﻿using Application.Users.Specifications;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Users.Extensions
 {

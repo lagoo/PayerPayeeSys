@@ -26,8 +26,10 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplication(true);
-            services.AddInfrastructure();
-            services.AddPersistence(Configuration);
+            services.AddInfrastructure(Configuration);
+            services.AddPersistence(Configuration);            
+
+            services.AddHttpClient
 
             services.AddHealthChecks()
                     .AddDbContextCheck<ApplicationContext>();

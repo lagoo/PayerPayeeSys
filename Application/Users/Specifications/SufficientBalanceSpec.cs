@@ -1,9 +1,7 @@
 ﻿using Domain.Entities;
 using NetDevPack.Specification;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace Application.Users.Specifications
 {
