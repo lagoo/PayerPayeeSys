@@ -17,6 +17,11 @@ namespace Infrastructure
                 client.BaseAddress = new Uri(configuration.GetSection("AuthorizationServiceUrl").Value);
             });
 
+            services.AddHttpClient<IMessageService, EmailMessageService>(client =>
+            {
+                client.BaseAddress = new Uri(configuration.GetSection("MessageServiceUrl").Value);
+            });
+
             services.AddScoped<IDomainEventService, DomainEventService>();
 
             services.AddTransient<IDateTime, MachineDateTime>();
