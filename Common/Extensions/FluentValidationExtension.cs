@@ -24,7 +24,13 @@ namespace Common.Extensions
 
                 try
                 {
-                    return new Cpf(input).EstaValido() || new Cnpj(input).EstaValido();
+                    if (input.Length == 11)
+                        return new Cpf(input).EstaValido();
+
+                    if (input.Length == 14)
+                        return new Cnpj(input).EstaValido();
+
+                    return false;
                 }
                 catch (Exception)
                 {

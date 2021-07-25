@@ -2,8 +2,11 @@
 using Application.Common.Handlers;
 using Application.Common.Interfaces;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,13 +29,14 @@ namespace Application.Users.Queries.GetUserDetail
 
             public async Task<UserDetailVm> Handle(GetUserDetailQuery request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Users
-                                           .FindAsync(request.UserId);
+                var entity = await _context.Users.Where(e => e.Id == request.UserId)
+                                                 .ProjectTo<UserDetailVm>(_mapper.ConfigurationProvider)
+                                                 .FirstOrDefaultAsync();
 
                 if (entity == null)                
                     throw new NotFoundException(nameof(User), request.UserId);                
 
-                return _mapper.Map<UserDetailVm>(entity);
+                return entity;
             }
         }
     }

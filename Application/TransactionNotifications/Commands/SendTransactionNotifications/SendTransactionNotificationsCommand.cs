@@ -47,6 +47,8 @@ namespace Application.TransactionNotifications.Commands.SendTransactionNotificat
                     }
                 }
 
+                await _context.SaveChangesAsync(cancellationToken);
+
                 return Unit.Value;
             }
         }

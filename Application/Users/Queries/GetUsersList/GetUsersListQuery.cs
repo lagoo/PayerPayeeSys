@@ -20,9 +20,8 @@ namespace Application.Users.Queries.GetUsersList
 
             public async Task<UserListVm> Handle(GetUsersListQuery request, CancellationToken cancellationToken)
             {
-                var users = await _context.Users
-                                          .ProjectTo<UserLookupDto>(_mapper.ConfigurationProvider)
-                                          .ToListAsync(cancellationToken);
+                var users = await _context.Users.ProjectTo<UserLookupDto>(_mapper.ConfigurationProvider)
+                                                .ToListAsync(cancellationToken);
 
                 var vm = new UserListVm
                 {
