@@ -1,19 +1,21 @@
 ﻿using Application.Common.Interfaces;
-using Moq;
+using Moq.AutoMock;
 using Persistence;
 using System;
 
 namespace Application.UnitTests.Core
 {
-    public class CommandTestBase : IDisposable
+    public class CommandBase : IDisposable
     {
         protected readonly ApplicationContext _context;
-        protected readonly Mock<ICurrentUserService> _currentUserMock;
+        protected readonly AutoMocker autoMocker;        
 
-        public CommandTestBase()
+        public CommandBase()
         {
             _context = ApplicationContextFactory.Create();
-            _currentUserMock = new Mock<ICurrentUserService>();
+
+            autoMocker = new AutoMocker();
+            autoMocker.Use(typeof(IApplicationContext), _context);
         }
 
         public void Dispose()
@@ -21,4 +23,5 @@ namespace Application.UnitTests.Core
             ApplicationContextFactory.Destroy(_context);
         }
     }
+    
 }

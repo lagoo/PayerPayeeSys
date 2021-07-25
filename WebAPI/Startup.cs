@@ -27,9 +27,7 @@ namespace WebAPI
         {
             services.AddApplication(true);
             services.AddInfrastructure(Configuration);
-            services.AddPersistence(Configuration);            
-
-            services.AddHttpClient
+            services.AddPersistence(Configuration);
 
             services.AddHealthChecks()
                     .AddDbContextCheck<ApplicationContext>();
@@ -40,10 +38,10 @@ namespace WebAPI
                     .AddNewtonsoftJson()
                     .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IApplicationContext>());
 
-                //.ConfigureApiBehaviorOptions(options =>
-                //{
-                //    options.SuppressMapClientErrors = true;
-                //});
+            //.ConfigureApiBehaviorOptions(options =>
+            //{
+            //    options.SuppressMapClientErrors = true;
+            //});
 
             services.AddSwaggerGen(c =>
             {

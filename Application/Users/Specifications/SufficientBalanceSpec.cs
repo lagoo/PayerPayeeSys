@@ -16,7 +16,7 @@ namespace Application.Users.Specifications
 
         public override Expression<Func<User, bool>> ToExpression()
         {
-            return user => user.Wallet.GetBalance() > amount;
+            return user => user.Wallet.GetBalance() >= amount;
         }
     }
 }

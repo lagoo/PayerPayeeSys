@@ -11,7 +11,9 @@ namespace Application.UnitTests.Core
     public static class ApplicationContextFactory
     {
         public static readonly User BaseUser = new("Iago", "92426261803", "iagogs@gmail.com", "123", 100);
-        public static readonly User[] Users = { BaseUser, new("Fernando", "94842021012", "fernando@gmail.com", "123", 100) };
+        public static readonly User UserWithoutBalance = new("Fernando", "94842021012", "fernando@gmail.com", "123", 0);
+        public static readonly User ShopkeeperUser = new("Loja", "64879030000100", "loja@gmail.com", "123", 100);
+        public static readonly User[] Users = { BaseUser, UserWithoutBalance, ShopkeeperUser };
 
 
         public static ApplicationContext Create()

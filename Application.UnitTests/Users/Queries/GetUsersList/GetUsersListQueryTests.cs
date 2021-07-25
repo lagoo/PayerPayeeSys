@@ -31,7 +31,7 @@ namespace Application.UnitTests.Users.Queries.GetUsersList
 
             result.Should().BeOfType<UserListVm>();
 
-            result.Users.Should().HaveCount(2);
+            result.Users.Should().HaveCount(ApplicationContextFactory.Users.Length);
             result.Users.First().Name.Should().Be(ApplicationContextFactory.BaseUser.Name);
         }
     }    

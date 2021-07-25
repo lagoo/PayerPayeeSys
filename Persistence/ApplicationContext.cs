@@ -29,6 +29,8 @@ namespace Persistence
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,12 +43,7 @@ namespace Persistence
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            await DispatchPreEvents();
-
-            //TODO: criar uma logica para caso a entidade nao esteja valida adcionar os erros e o nome da entidade para lancar uma exception
-            //foreach (EntityEntry<IValidableEntity> entry in ChangeTracker.Entries<IValidableEntity>())
-            //{
-            //}
+            await DispatchPreEvents();            
 
             foreach (EntityEntry<AuditableEntity> entry in ChangeTracker.Entries<AuditableEntity>())
             {
