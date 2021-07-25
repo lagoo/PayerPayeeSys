@@ -10,6 +10,7 @@ namespace Application.Common.Interfaces
         DbSet<User> Users { get; set; }
         DbSet<Wallet> Wallets { get; set; }
         DbSet<Transaction> Transactions { get; set; }
+        DbSet<TransactionNotification> TransactionNotifications { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
         int SaveChanges();
