@@ -32,7 +32,7 @@ namespace Application.UnitTests.Users.Queries.GetUsersList
             result.Should().BeOfType<UserListVm>();
 
             result.Users.Should().HaveCount(ApplicationContextFactory.Users.Length);
-            result.Users.First().Name.Should().Be(ApplicationContextFactory.BaseUser.Name);
+            result.Users.First().Name.Should().Be(ApplicationContextFactory.UserWithBalance.Name);
         }
     }    
 }

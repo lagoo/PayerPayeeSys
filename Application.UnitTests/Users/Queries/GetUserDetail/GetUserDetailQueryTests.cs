@@ -30,9 +30,9 @@ namespace Application.UnitTests.Users.Queries.GetUserDetail
 
             result.Should().BeOfType<UserDetailVm>();
 
-            result.Name.Should().Be(ApplicationContextFactory.BaseUser.Name);
-            result.Document.Should().Be(ApplicationContextFactory.BaseUser.Document);
-            result.Email.Should().Be(ApplicationContextFactory.BaseUser.Email);
+            result.Name.Should().Be(ApplicationContextFactory.UserWithBalance.Name);
+            result.Document.Should().Be(ApplicationContextFactory.UserWithBalance.Document);
+            result.Email.Should().Be(ApplicationContextFactory.UserWithBalance.Email);
             result.Wallet.Balance.Should().Be(100);
             result.Wallet.Transactions.Should().HaveCount(1);
         }

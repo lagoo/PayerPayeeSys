@@ -10,6 +10,7 @@ using Persistence;
 using WebAPI.Common;
 using FluentValidation.AspNetCore;
 using Application.Common.Interfaces;
+using WebAPI.Worker;
 
 namespace WebAPI
 {
@@ -24,7 +25,7 @@ namespace WebAPI
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {            
             services.AddApplication(true);
             services.AddInfrastructure(Configuration);
             services.AddPersistence(Configuration);
@@ -36,17 +37,14 @@ namespace WebAPI
 
             services.AddControllers()
                     .AddNewtonsoftJson()
-                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IApplicationContext>());
-
-            //.ConfigureApiBehaviorOptions(options =>
-            //{
-            //    options.SuppressMapClientErrors = true;
-            //});
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IApplicationContext>());            
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PayerPayeeSys", Version = "v1" });
             });
+
+            services.AddHostedService<SendNotificationWorker>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
