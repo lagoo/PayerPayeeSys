@@ -30,13 +30,14 @@ namespace Application.Users.Queries.GetUserDetail
             public async Task<UserDetailVm> Handle(GetUserDetailQuery request, CancellationToken cancellationToken)
             {
                 var entity = await _context.Users.Where(e => e.Id == request.UserId)
-                                                 .ProjectTo<UserDetailVm>(_mapper.ConfigurationProvider)
+                                                 .Include(e => e.Wallet)
+                                                 .ThenInclude(e => e.Transactions)
                                                  .FirstOrDefaultAsync();
 
-                if (entity == null)                
-                    throw new NotFoundException(nameof(User), request.UserId);                
+                if (entity == null)
+                    throw new NotFoundException(nameof(User), request.UserId);
 
-                return entity;
+                return _mapper.Map<UserDetailVm>(entity);
             }
         }
     }
