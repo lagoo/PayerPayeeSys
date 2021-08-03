@@ -6,8 +6,8 @@
 This is a api using ASP.NET Core 5.0, CQRS with MediatR, Microsoft Sql Server or In Memory and a lot of fun things like swagger and JWT(in-progress), following the principles of Clean Architecture. 
 
 ## Technologies
-* .NET Core 3.1
-* Entity Framework Core 3.1
+* .NET Core 5.0
+* Entity Framework Core 5.0
 * MediatR
 * AutoMapper
 * FluentValidation
