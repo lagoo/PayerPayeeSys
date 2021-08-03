@@ -28,6 +28,15 @@ Verify that the **DbConnection** connection details within **appsettings.{ENVIRO
 
 When you run the application the database will be automatically created (if necessary) and the latest migrations will be applied.
 
+## Getting Started
+The easiest way to get started is to install Docker in your computer and:
+
+1. Navigate to root folder, same where sample-api.sln is located.
+   - Run the command `docker-compose run -d` << this will setup the environment using Microsoft Sql Server
+   - Run the command `docker-compose -f docker-compose-in-mem.yml up -d` << this will setup the environment using in memory database
+2. Docker compose will download all necessary components and, after all...
+3. Just access http://localhost:8080 to check if it's working fine
+
 ## Testing
 You can check all API endpoints at http://localhost:8080. Thanks [Swagger](https://github.com/swagger-api)
 

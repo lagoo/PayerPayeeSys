@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.IntegrationT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{8388EDB2-B59C-4B78-A928-CCD9968DEABC}"
 	ProjectSection(SolutionItems) = preProject
+		docker-compose-in-mem.yml = docker-compose-in-mem.yml
+		docker-compose.yml = docker-compose.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
