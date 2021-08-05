@@ -27,3 +27,15 @@ If you would like to use In Memory, there is a key to be updated in **WebApi/app
 Verify that the **DbConnection** connection details within **appsettings.{ENVIRONMENT}.json** points to a valid SQL Server instance. 
 
 When you run the application the database will be automatically created (if necessary) and the latest migrations will be applied.
+
+## Getting Started
+The easiest way to get started is to install Docker in your computer and:
+
+1. Navigate to root folder, same where sample-api.sln is located.
+   - Run the command `docker-compose up` << this will setup the environment using Microsoft Sql Server   
+2. Docker compose will download all necessary components and, after all...
+3. Just access http://localhost:8080 to check if it's working fine
+
+## Testing
+You can check all API endpoints at http://localhost:8080/swagger/index.html. Thanks [Swagger](https://github.com/swagger-api)
+
