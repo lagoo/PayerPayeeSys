@@ -11,6 +11,7 @@ using WebAPI.Common;
 using FluentValidation.AspNetCore;
 using Application.Common.Interfaces;
 using WebAPI.Worker;
+using WebAPI.Common.Extensions;
 
 namespace WebAPI
 {
@@ -26,9 +27,11 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {            
-            services.AddApplication(true);
-            services.AddInfrastructure(Configuration);
-            services.AddPersistence(Configuration);
+            services.AddApplication(true)
+                    .AddInfrastructure(Configuration)
+                    .AddPersistence(Configuration);
+            
+            services.AddAuthenticationType(Configuration);
 
             services.AddHealthChecks()
                     .AddDbContextCheck<ApplicationContext>();
@@ -42,6 +45,8 @@ namespace WebAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PayerPayeeSys", Version = "v1" });
+
+                c.SwaggerAuthentication(Configuration);
             });
 
             services.AddHostedService<SendNotificationWorker>();
@@ -63,6 +68,7 @@ namespace WebAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

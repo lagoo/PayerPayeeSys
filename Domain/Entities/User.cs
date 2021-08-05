@@ -9,7 +9,7 @@ namespace Domain.Entities
     public class User : AuditableEntity
     {
         protected User()
-        {            
+        {
         }
 
         public User(string name, string document, string email, string password, decimal initialAmount)
@@ -28,9 +28,15 @@ namespace Domain.Entities
         public string Email { get; private set; }
         public string Password { get; private set; }
 
-        public Wallet Wallet { get; private set; }        
+        public Wallet Wallet { get; private set; }
 
 
+        public bool ValidatePassword(string password)
+        {
+            var (Verified, NeedsUpgrade) = PasswordHasher.Check(Password, password);
+
+            return Verified;
+        }
 
         public override int EntityId => Id;
         public override string EntityUniqueIdentifier => $"{Document} - {Email}";
