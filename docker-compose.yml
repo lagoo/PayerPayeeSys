@@ -6,3 +6,11 @@ services:
     build:
       context: .
       dockerfile: WebAPI\Dockerfile
+  ms-sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "teste@123"
+      MSSQL_PID: Express
+    ports: 
+      - 1433:1433

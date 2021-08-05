@@ -31,7 +31,7 @@ When you run the application the database will be automatically created (if nece
 ## Getting Started
 The easiest way to get started is to install Docker in your computer and:
 
-1. Navigate to root folder, same where sample-api.sln is located.
+1. Navigate to root folder, same where Solution.sln is located.
    - Run the command `docker-compose up` << this will setup the environment using Microsoft Sql Server   
 2. Docker compose will download all necessary components and, after all...
 3. Just access http://localhost:8080 to check if it's working fine
