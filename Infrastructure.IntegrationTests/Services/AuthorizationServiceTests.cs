@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Infrastructure.Services;
+using Moq;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -9,14 +10,18 @@ namespace Infrastructure.IntegrationTests.Services
 {
     public class AuthorizationServiceTests
     {
-        private readonly AuthorizationService _stu;        
+        private readonly AuthorizationService _stu;
+        private readonly Mock<IHttpClientFactory> _httpClientFactory;
 
         public AuthorizationServiceTests()
-        {            
-            _stu = new AuthorizationService(new HttpClient()
+        {
+            _httpClientFactory = new Mock<IHttpClientFactory>();
+            _httpClientFactory.Setup(e => e.CreateClient()).Returns(new HttpClient()
             {
                 BaseAddress = new Uri("https://run.mocky.io/v3/")
             });
+
+            _stu = new AuthorizationService(_httpClientFactory.Object);
         }
 
         [Fact()]

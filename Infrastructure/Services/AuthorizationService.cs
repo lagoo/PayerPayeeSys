@@ -10,9 +10,9 @@ namespace Infrastructure.Services
         private readonly HttpClient _httpClient;
         private readonly string _remoteServiceBaseUrl = "8fafdd68-a090-496f-8c9a-3442cf30dae6";
 
-        public AuthorizationService(HttpClient httpClient)
+        public AuthorizationService(IHttpClientFactory httpClient)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClient.CreateClient();
         }
 
         public async Task<bool> Authorize()

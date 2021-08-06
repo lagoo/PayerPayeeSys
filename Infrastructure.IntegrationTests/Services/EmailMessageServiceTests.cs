@@ -10,13 +10,18 @@ namespace Infrastructure.IntegrationTests.Services
     public class EmailMessageServiceTests
     {
         private readonly EmailMessageService _stu;
+        private readonly Mock<IHttpClientFactory> _httpClientFactory;
+
 
         public EmailMessageServiceTests()
         {
-            _stu = new EmailMessageService(new HttpClient()
+            _httpClientFactory = new Mock<IHttpClientFactory>();
+            _httpClientFactory.Setup(e => e.CreateClient()).Returns(new HttpClient()
             {
                 BaseAddress = new Uri("http://o4d9z.mocklab.io/")
             });
+
+            _stu = new EmailMessageService(_httpClientFactory.Object);
         }
 
         [Fact()]

@@ -15,15 +15,20 @@ namespace Infrastructure.UnitTests.Services
     {
         private readonly AuthorizationService _stu;
         private readonly Mock<HttpMessageHandler> _mock;
+        private readonly Mock<IHttpClientFactory> _mockClientFactory;
 
         public AuthorizationServiceTests()
         {
             _mock = new Mock<HttpMessageHandler>();
-
-            _stu = new AuthorizationService(new HttpClient(_mock.Object)
+            var http = new HttpClient(_mock.Object)
             {
                 BaseAddress = new Uri("http://test.com/")
-            });
+            };
+
+            _mockClientFactory = new Mock<IHttpClientFactory>();
+            _mockClientFactory.Setup(e => e.CreateClient()).Returns(http);
+            
+            _stu = new AuthorizationService(_mockClientFactory.Object);
         }
 
         [Fact()]
