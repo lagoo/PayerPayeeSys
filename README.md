@@ -1,5 +1,4 @@
-# Sample Api
-![.NET Core](https://github.com/lagoo/PayerPayeeSys/workflows/.NET%20Core/badge.svg)
+# PayerPayeeSys
 
 <br/>
 
