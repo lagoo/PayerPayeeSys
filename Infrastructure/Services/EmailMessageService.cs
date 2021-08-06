@@ -10,9 +10,9 @@ namespace Infrastructure.Services
         private readonly HttpClient _httpClient;
         private readonly string _remoteServiceBaseUrl = "notify";
 
-        public EmailMessageService(IHttpClientFactory httpClient)
+        public EmailMessageService(HttpClient httpClient)
         {
-            _httpClient = httpClient.CreateClient();
+            _httpClient = httpClient;
         }
 
         public async Task<bool> SendMessage()

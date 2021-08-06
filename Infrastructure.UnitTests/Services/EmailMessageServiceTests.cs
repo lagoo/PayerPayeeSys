@@ -15,21 +15,15 @@ namespace Infrastructure.UnitTests.Services
     {
         private readonly EmailMessageService _stu;
         private readonly Mock<HttpMessageHandler> _mock;
-        private readonly Mock<IHttpClientFactory> _mockClientFactory;
-
 
         public EmailMessageServiceTests()
-        {                        
+        {
             _mock = new Mock<HttpMessageHandler>();
-            var http = new HttpClient(_mock.Object)
+
+            _stu = new EmailMessageService(new HttpClient(_mock.Object)
             {
                 BaseAddress = new Uri("http://test.com/")
-            };
-
-            _mockClientFactory = new Mock<IHttpClientFactory>();
-            _mockClientFactory.Setup(e => e.CreateClient()).Returns(http);
-
-            _stu = new EmailMessageService(_mockClientFactory.Object);
+            });
         }
 
         [Fact()]
