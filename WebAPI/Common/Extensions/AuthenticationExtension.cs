@@ -18,6 +18,9 @@ namespace WebAPI.Common.Extensions
                 case "jwt":
                     services.AddInternalJwt(configuration);
                     break;
+                case "azuread":
+                    services.AddAzureAd(configuration);
+                    break;
             };
         }
 
@@ -27,16 +30,28 @@ namespace WebAPI.Common.Extensions
             services.AddSingleton<IJwtHandler, JwtHandler>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                    .AddJwtBearer(cfg =>
+                    .AddJwtBearer(opt =>
                     {
-                        cfg.RequireHttpsMetadata = false;
-                        cfg.SaveToken = true;
-                        cfg.TokenValidationParameters = new TokenValidationParameters
+                        opt.RequireHttpsMetadata = false;
+                        opt.SaveToken = true;
+                        opt.TokenValidationParameters = new TokenValidationParameters
                         {
                             ValidateAudience = false,
                             ValidIssuer = configuration.GetSection("jwt")["Issuer"],
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("jwt")["SecretKey"]))
                         };
+                    });
+        }
+
+        private static void AddAzureAd(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<AzureAdOptions>(options => configuration.GetSection("AzureAd").Bind(options));            
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(opt =>
+                    {
+                        opt.Audience = configuration.GetSection("AzureAd")["ResourceId"];
+                        opt.Authority = $"{configuration.GetSection("AzureAd")["InstanceId"]}{configuration.GetSection("AzureAd")["TenantId"]}";                        
                     });
         }
     }

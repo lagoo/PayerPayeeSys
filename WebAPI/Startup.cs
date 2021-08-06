@@ -59,7 +59,11 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PayerPayeeSys v1"));
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "PayerPayeeSys v1");
+                    c.SwaggerCustomUI(Configuration);
+                });
             }
 
             app.UseCustomExceptionHandler();
