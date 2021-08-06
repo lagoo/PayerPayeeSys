@@ -40,6 +40,7 @@ namespace WebAPI
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     config.AddJsonFile("appsettings.Jwt.json", optional: false, reloadOnChange: false);
+                    config.AddJsonFile("appsettings.AzureAD.json", optional: false, reloadOnChange: false);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

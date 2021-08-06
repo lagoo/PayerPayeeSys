@@ -2,13 +2,13 @@
 
 <br/>
 
-This is a api using ASP.NET Core 5.0, CQRS with MediatR, Microsoft Sql Server or In Memory and a lot of fun things like swagger, JWT or AzureAD(In-progress) and Docker with Docker-compose, following the principles of SOLID, DRY and Clean Architecture. 
+This is a api using ASP.NET Core 5.0, CQRS with MediatR, Polly with circuit breaker pattern for resilience(In-progress), Microsoft Sql Server or In Memory and a lot of fun things like swagger, JWT or Azure Active Diretory and Docker with Docker-compose, following the principles of SOLID, DRY and Clean Architecture. 
 
 
 ## Technologies
 * .NET Core 5.0
 * Entity Framework Core 5.0
-* Microsoft Azure
+* Microsoft Azure (Active Directory)
 * Docker (Docker-compose)
 * MediatR
 * AutoMapper
