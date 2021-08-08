@@ -30,9 +30,9 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",      
       "publishAllPorts": true,
-      "useSSL": true      
+      "useSSL": true
     },
     "WSL 2": {
       "commandName": "WSL2",

@@ -12,19 +12,8 @@ namespace WebAPI.Common.Extensions
 {
     public static class SwaggerExtension
     {
-        public static void SwaggerCustomUI(this SwaggerUIOptions options, IConfiguration configuration)
-        {            
-            switch (configuration["AuthenticationType"].ToLower())
-            {
-                case "azuread":
-                    options.SwaggerAzureAdCustomUI(configuration);
-                    break;
-            };
-        }
-
         public static void SwaggerAuthentication(this SwaggerGenOptions options, IConfiguration configuration)
         {
-            options.OperationFilter<AddAuthHeaderOperationFilter>();
 
             switch (configuration["AuthenticationType"].ToLower())
             {
@@ -39,6 +28,8 @@ namespace WebAPI.Common.Extensions
 
         private static void SwaggerInternalJwt(this SwaggerGenOptions options)
         {
+            options.OperationFilter<AddAuthHeaderOperationFilter>();
+
             options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
             {
                 Description = "`Token only!!!` - without `Bearer_` prefix",
@@ -86,6 +77,17 @@ namespace WebAPI.Common.Extensions
                     new List<string>()
                 }
             });
+        }
+
+
+        public static void SwaggerCustomUI(this SwaggerUIOptions options, IConfiguration configuration)
+        {
+            switch (configuration["AuthenticationType"].ToLower())
+            {
+                case "azuread":
+                    options.SwaggerAzureAdCustomUI(configuration);
+                    break;
+            };
         }
 
         private static void SwaggerAzureAdCustomUI(this SwaggerUIOptions options, IConfiguration configuration)
