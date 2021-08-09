@@ -11,16 +11,16 @@ using Xunit;
 
 namespace Infrastructure.UnitTests.Services
 {
-    public class EmailMessageServiceTests
+    public class NotificationMessageServiceTests
     {
-        private readonly EmailMessageService _stu;
+        private readonly NotificationMessageService _stu;
         private readonly Mock<HttpMessageHandler> _mock;
 
-        public EmailMessageServiceTests()
+        public NotificationMessageServiceTests()
         {
             _mock = new Mock<HttpMessageHandler>();
 
-            _stu = new EmailMessageService(new HttpClient(_mock.Object)
+            _stu = new NotificationMessageService(new HttpClient(_mock.Object)
             {
                 BaseAddress = new Uri("http://test.com/")
             });

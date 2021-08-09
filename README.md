@@ -2,7 +2,7 @@
 
 <br/>
 
-This is a api using ASP.NET Core 5.0, CQRS with MediatR, Polly with circuit breaker pattern for resilience(In-progress), Microsoft Sql Server or In Memory and a lot of fun things like swagger, JWT or Azure Active Diretory and Docker with Docker-compose, following the principles of SOLID, DRY and Clean Architecture. 
+This is a api using ASP.NET Core 5.0, CQRS with MediatR, Polly with circuit breaker pattern for resilience, Microsoft Sql Server or In Memory and a lot of fun things like swagger, JWT or Azure Active Diretory and Docker with Docker-compose, following the principles of SOLID, DRY and Clean Architecture. 
 
 
 ## Technologies
@@ -52,7 +52,7 @@ The easiest way to get started is to install Docker in your computer and:
 1. Navigate to root folder, same where Solution.sln is located.
    - Run the command `docker-compose up` << this will setup the environment using Microsoft Sql Server   
 2. Docker compose will download all necessary components and, after all...
-3. Just access http://localhost:8080 to check if it's working fine
+3. Just access https://localhost:8081 to check if it's working fine
 
 ## Testing
-You can check all API endpoints at http://localhost:8080/swagger/index.html. Thanks [Swagger](https://github.com/swagger-api)
+You can check all API endpoints at https://localhost:8081/swagger/index.html. Thanks [Swagger](https://github.com/swagger-api)

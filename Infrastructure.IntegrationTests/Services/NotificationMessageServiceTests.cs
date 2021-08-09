@@ -7,13 +7,13 @@ using Xunit;
 
 namespace Infrastructure.IntegrationTests.Services
 {
-    public class EmailMessageServiceTests
+    public class NotificationMessageServiceTests
     {
-        private readonly EmailMessageService _stu;
+        private readonly NotificationMessageService _stu;
 
-        public EmailMessageServiceTests()
+        public NotificationMessageServiceTests()
         {
-            _stu = new EmailMessageService(new HttpClient()
+            _stu = new NotificationMessageService(new HttpClient()
             {
                 BaseAddress = new Uri("http://o4d9z.mocklab.io/")
             });

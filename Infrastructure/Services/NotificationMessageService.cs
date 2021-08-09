@@ -1,4 +1,4 @@
-﻿using Application.Common.Interfaces.Services;
+﻿using Application.Common.Interfaces;
 using Newtonsoft.Json;
 using Polly;
 using Polly.CircuitBreaker;
@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Services
 {
-    public class AuthorizationService : IAuthorizationService
+    public class NotificationMessageService : IMessageService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _remoteServiceBaseUrl = "8fafdd68-a090-496f-8c9a-3442cf30dae6";
+        private readonly string _remoteServiceBaseUrl = "notify";
 
         private static readonly AsyncRetryPolicy<HttpResponseMessage> _retryPolicy =
             Policy.HandleResult<HttpResponseMessage>(message => !message.IsSuccessStatusCode)
@@ -26,31 +26,30 @@ namespace Infrastructure.Services
         private readonly AsyncPolicyWrap<HttpResponseMessage> _resilientPolicy =
             _circuitBreakerPolicy.WrapAsync(_retryPolicy);
 
-        public AuthorizationService(HttpClient httpClient)
+        public NotificationMessageService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
-        public async Task<bool> Authorize()
+        public async Task<bool> SendMessage()
         {
             if (_circuitBreakerPolicy.CircuitState == CircuitState.Open)
-                throw new Exception("Servico de autorização de transação indisponivel!");
+                throw new Exception("Servico de envio de notificação da transação indisponivel!");
 
             var response = await _resilientPolicy.ExecuteAsync(() => _httpClient.GetAsync(_remoteServiceBaseUrl));
 
             var responseString = await response.Content.ReadAsStringAsync();
 
-            var result = JsonConvert.DeserializeObject<AuthorizationResponse>(responseString);
+            var result = JsonConvert.DeserializeObject<MessageResponse>(responseString);
 
             return result.Success;
         }
     }
 
-    public class AuthorizationResponse
+    public class MessageResponse
     {
         public string Message { get; set; }
 
-        public bool Success => Message == "Autorizado";
+        public bool Success => Message == "Success";
     }
-
 }
