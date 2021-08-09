@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Services
 {
-    public class EmailMessageService : IMessageService
+    public class NotificationMessageService : IMessageService
     {
         private readonly HttpClient _httpClient;
         private readonly string _remoteServiceBaseUrl = "notify";
@@ -26,7 +26,7 @@ namespace Infrastructure.Services
         private readonly AsyncPolicyWrap<HttpResponseMessage> _resilientPolicy =
             _circuitBreakerPolicy.WrapAsync(_retryPolicy);
 
-        public EmailMessageService(HttpClient httpClient)
+        public NotificationMessageService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

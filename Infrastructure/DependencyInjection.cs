@@ -17,7 +17,7 @@ namespace Infrastructure
                 client.BaseAddress = new Uri(configuration.GetSection("AuthorizationServiceUrl").Value);
             });
 
-            services.AddHttpClient<IMessageService, EmailMessageService>(client =>
+            services.AddHttpClient<IMessageService, NotificationMessageService>(client =>
             {
                 client.BaseAddress = new Uri(configuration.GetSection("MessageServiceUrl").Value);
             });
