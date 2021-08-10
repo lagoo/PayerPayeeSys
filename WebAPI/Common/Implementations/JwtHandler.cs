@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Common.Constants;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -32,7 +33,7 @@ namespace WebAPI.Common.Implementations
             };
         }
 
-        public JsonWebToken Create(int userId)
+        public JsonWebToken Create()
         {
             var nowUtc = DateTime.UtcNow;
             var expires = nowUtc.AddMinutes(_options.ExpiryMinutes);
@@ -41,11 +42,11 @@ namespace WebAPI.Common.Implementations
             var now = (long)new TimeSpan(nowUtc.Ticks - centuryBegin.Ticks).TotalSeconds;
             var payload = new JwtPayload
             {
-                {"sub", userId}, // subject
+                {"sub", SystemConst.SYSTEM_USER_NAME}, // subject
                 {"iss", _options.Issuer},
                 {"iat", now}, // issued at
                 {"exp", exp}, // experiation date
-                {"unique_name", userId} // user within API
+                {"unique_name", SystemConst.SYSTEM_USER_GUID} // user within API
             };
             var jwt = new JwtSecurityToken(_jwtHeader, payload);
             var token = _jwtSecurityTokenHandler.WriteToken(jwt);

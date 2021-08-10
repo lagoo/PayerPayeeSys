@@ -17,9 +17,9 @@ namespace WebAPI.Controllers
         [ProducesDefaultResponseType]
         public async Task<IActionResult> Create([FromBody] CreateTransactionCommand command)
         {
-            await Mediator.Send(command);
+            var transactionId = await Mediator.Send(command);
 
-            return NoContent();
+            return Ok(new { TransactionIdentifier = transactionId });
         }
     }
 }

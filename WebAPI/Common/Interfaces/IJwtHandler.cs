@@ -4,6 +4,6 @@ namespace WebAPI.Common.Interfaces
 {
     public interface IJwtHandler
     {
-        JsonWebToken Create(int userId);
+        JsonWebToken Create();
     }
 }
