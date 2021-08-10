@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using WebAPI.Common.Interfaces;
 
 namespace WebAPI.Controllers
 {
@@ -40,9 +39,9 @@ namespace WebAPI.Controllers
         [ProducesDefaultResponseType]
         public async Task<IActionResult> Create([FromBody] CreateUserCommand command)
         {
-            await Mediator.Send(command);
+            var userId = await Mediator.Send(command);
 
-            return NoContent();
+            return Ok(new { UserId = userId });
         }
     }
 }

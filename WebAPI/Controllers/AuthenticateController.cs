@@ -1,4 +1,4 @@
-﻿using Application.Users.Queries.GetAuthenticatedUser;
+﻿using Application.Authentications.Query.GetAuthentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -17,11 +17,11 @@ namespace WebAPI.Controllers
 
         [HttpPost("auth")]
         [AllowAnonymous]
-        public async Task<IActionResult> Authenticate([FromBody] GetAuthenticatedUserQuery request)
+        public async Task<IActionResult> Authenticate([FromBody] GetAuthenticationQuery request)
         {
             var id = await Mediator.Send(request);
 
-            var response = _jwtHandler?.Create(id);
+            var response = _jwtHandler?.Create();
 
             return Ok(response);
         }

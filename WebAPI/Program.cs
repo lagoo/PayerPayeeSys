@@ -1,9 +1,9 @@
+using Application.Common.Interfaces.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Persistence;
 using System;
 using System.Threading.Tasks;
 
@@ -20,8 +20,8 @@ namespace WebAPI
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var seeder = services.GetRequiredService<ApplicationContext>();
-                    await seeder.Database.EnsureCreatedAsync();
+                    var seeder = services.GetRequiredService<ISeedService>();
+                    await seeder.Seed();;
                 }
                 catch (Exception ex)
                 {

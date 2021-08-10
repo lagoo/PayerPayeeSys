@@ -59,14 +59,14 @@ namespace Application.Transactions.Commands.CreateTransaction
                 //if (payee == null)
                 //    throw new NotFoundException(nameof(User), request.Payee);
 
-                //if (payer.User.IsShopkeeper())
-                //    throw new WarningException("Usuário é um lojista!");
+                if (payer.User.IsShopkeeper())
+                    throw new WarningException("Usuário é um lojista!");
 
-                //if (!payer.User.HasSufficientBalance(request.Amount))
-                //    throw new WarningException("Saldo insuficiente para realizar a transação!");
+                if (!payer.User.HasSufficientBalance(request.Amount))
+                    throw new WarningException("Saldo insuficiente para realizar a transação!");
 
-                if (!payer.User.CanMakeTransaction(request.Amount))
-                    throw new WarningException("Saldo insuficiente para realizar a transação e/ou usuário é um lojista!");
+                //if (!payer.User.CanMakeTransaction(request.Amount))
+                //    throw new WarningException("Saldo insuficiente para realizar a transação e/ou usuário é um lojista!");
 
                 if (!await _authorization.Authorize())
                     throw new WarningException("Transação não autorizada!");                

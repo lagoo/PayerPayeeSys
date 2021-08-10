@@ -1,4 +1,5 @@
 ﻿using Application.Common.Interfaces;
+using Application.Common.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,8 @@ namespace Persistence
                     options.SetDbContextOptions(provider.GetRequiredService<IOptions<DbConnectionConfig>>().Value); });                
             }
 
-            services.AddScoped<IApplicationContext>(provider => provider.GetService<ApplicationContext>());            
+            services.AddScoped<IApplicationContext>(provider => provider.GetService<ApplicationContext>());
+            services.AddScoped<ISeedService, EntitySeederService>();
 
             return services;
         }

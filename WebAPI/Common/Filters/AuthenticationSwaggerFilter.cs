@@ -1,4 +1,4 @@
-﻿using Application.Users.Queries.GetAuthenticatedUser;
+﻿using Application.Authentications.Query.GetAuthentication;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace WebAPI.Common.Filters
     {
         public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
-            var schemas = context.SchemaRepository.Schemas.Where(e => e.Key == nameof(GetAuthenticatedUserQuery))
+            var schemas = context.SchemaRepository.Schemas.Where(e => e.Key == nameof(GetAuthenticationQuery))
                                                           .ToList();
 
             schemas.ForEach(x => { context.SchemaRepository.Schemas.Remove(x.Key); });
